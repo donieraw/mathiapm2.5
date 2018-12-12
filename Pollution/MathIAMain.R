@@ -8,7 +8,6 @@ library(e1071)
 
 # Sets working directory
 setwd("/Users/donier/Desktop/Pollution")
-getwd()
 
 # Reads csv dataset
 pollution.data <- read.csv("2014Dataset.csv")
