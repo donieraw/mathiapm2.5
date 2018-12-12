@@ -48,26 +48,6 @@ lines(xx, dnorm(xx, mean=100, sd=15))
 ggplot(data=pollution.data, aes(x=No, y=pm2.5)) + geom_line(stat="identity") + scale_x_continuous(breaks=seq(1,8760,336)) + 
   geom_smooth(method='lm',formula=No ~ pm2.5)
 
-
-
-# --------------------------- #
-
-# Linear Regression between Temperature and PM2.5
-linearMod <- lm(PM2.5 ~ Temperature, data=pollution.data)  # build linear regression model on full data
-print(linearMod)
-
-plot(Temperature, PM2.5, pch = 16, cex = 0.3, col = "black", main = "Temperature plotted against PM2.5 values", xlab = "Hour (hr)", ylab = "PM2.5", abline(121.0, -1.7, col="red"))
-
-summary(linearMod)
-# Linear Regression between Time and PM2.5
-
-# --------------------------- #
-
-
-
-
-
-
 # --------------------------- #
 
 # Linear Regression between Temperature and Dew Point
@@ -79,9 +59,11 @@ linearMod <- lm(Dew ~ Temp, data=DewTemp)  # build linear regression model on fu
 print(linearMod)
 
 plot(Temp, Dew, pch = 16, cex = 0.3, col = "black", main = "Temperature plotted against Dew Point Values", xlab = "Temperature", ylab = "Dew Point", abline(-13.8432, 0.1624, col="red"))
+# --------------------------- #
 
 
-# Calculation
+# --------------------------- #
+# Model Calculations
 
 modelSummary <- summary(linearMod)  # capture model summary as an object
 print(modelSummary)
@@ -97,10 +79,6 @@ p_value <- 2*pt(-abs(t_value), df=nrow(DewTemp)-ncol(DewTemp))  # calc p Value
 f_statistic <- summary(linearMod)$fstatistic  # fstatistic
 f <- summary(linearMod)$fstatistic  # parameters for model p-value calc
 model_p <- pf(f[1], f[2], f[3], lower=FALSE)
-
-# Linear Regression between Time and Wind Speed
-
-# --------------------------- #
 
 
 # Pm2.5 correlation
